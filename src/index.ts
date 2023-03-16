@@ -7,6 +7,7 @@ import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import compression from "compression";
 import mongoose from "mongoose";
+import router from "./routes/userRoutes";
 
 const PORT = process.env.SERVER_PORT || 8001;
 const MONGO_URI = process.env.MONGO_CONNECTION_STRING as string;
@@ -22,6 +23,7 @@ app.use(
 app.use(compression());
 app.use(cookieParser());
 app.use(bodyParser.json());
+app.use("/", router());
 
 const server = http.createServer(app);
 
